@@ -2,9 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-PROJECT		:= go.mozilla.org/sops/v3
-GO 		:= GO15VENDOREXPERIMENT=1 GO111MODULE=on GOPROXY=https://proxy.golang.org go
-GOLINT 		:= golint
+PROJECT	:= go.mozilla.org/sops/v3
+GO 	    := go
+GOLINT 	:= golint
 
 all: test vet generate install functional-tests
 origin-build: test vet generate install functional-tests-all
@@ -97,7 +97,7 @@ download-index:
 	bash make_download_page.sh
 
 mock:
-	go get github.com/vektra/mockery/.../
+	go get github.com/vektra/mockery/cmd/mockery
 	mockery -dir vendor/github.com/aws/aws-sdk-go/service/kms/kmsiface/ -name KMSAPI -output kms/mocks
 
 .PHONY: all test generate clean vendor functional-tests mock
